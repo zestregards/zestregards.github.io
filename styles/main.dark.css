@@ -155,6 +155,9 @@ i {
 .fa-linktree:hover {
   color: #78e371;
 }
+.fa-globe:hover {
+  color: #665381;
+}
 
 #lightOrDarkButton {
   place-self: center;

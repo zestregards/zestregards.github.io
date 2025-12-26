@@ -103,12 +103,6 @@ i {
   vertical-align: middle;
 }
 
-/* Signature */
-#sig {
-  width: 400px;
-  max-width: 70%;
-}
-
 .emphasis {
   /*for fade effect on hover*/
   -o-transition:color 0.5s;
@@ -131,7 +125,7 @@ i {
 /* Social link icon wrapper */
 #socialLink {
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
+  grid-template-columns: auto auto auto auto auto auto auto;
   width: min-content;
   margin: 0.5em auto;
 }
@@ -153,6 +147,9 @@ i {
 }
 .fa-linktree:hover {
   color: #78e371;
+}
+.fa-globe:hover {
+  color: #665381;
 }
 
 #lightOrDarkButton {
