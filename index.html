@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-c7uWV2oqCmvn9QFtXjEMzpE3PK0rR7euLinMD44itII=' https://kit.fontawesome.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' https://kit.fontawesome.com; font-src 'self' https://fonts.gstatic.com https://kit.fontawesome.com https://ka-f.fontawesome.com; connect-src https://ka-f.fontawesome.com;">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="Zest Regards" content="Personal Website" />
+        <meta name="description" content="Jolene Langlinais's website with links to resources related to her culinary project Zest Regards." />
+        <link rel="shortcut icon" href="favicon.ico" />
+        <link rel="stylesheet" href="styles/main.light.css" id="theme" />
+        <title>Zest Regards</title>
+        <script defer src="script.js"></script>
+        <script src="https://kit.fontawesome.com/860fc47340.js" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            function CheckMobile() {
+                if (
+                    ["iPad", "iPhone", "iPod"].includes(navigator.platform) ||
+                    /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+                ) {
+                    document.getElementById("sig").style.width = "50% !important";
+                    document.getElementById("sig").style.maxWidth = "70% !important";
+                };
+            }
+            window.onload = CheckMobile;
+        </script>
+        <link href="styles/fa.fontawesome.css" rel="stylesheet">
+        <link href="styles/fa.brands.css" rel="stylesheet">
+        <link href="styles/fa.solid.css" rel="stylesheet">
+    </head>
+    <body id="bodyId">
+            <div id="page">
+                <div id="main">
+                    <div>
+                        <p><span class="emphasis">Culinary</span> thoughts and writings by <span class="emphasis"><a href="jolenelanglinais.com">Jolene Langlinais</a></span></p>
+                        <p>Former <span class="emphasis">chef</span> and current opiniated <span class="emphasis">armchair cook</span></p>
+                        <p>Wrote a <span class="emphasis">culinary primer</span> cookbook</p>
+                    </div>
+                </div>
+                <div id="socialLink">
+                    <a href="https://www.instagram.com/zestregards" rel="noopener" target="_blank">
+                        <i class="fa-brands fa-instagram"></i>
+                        <span class="sr-only">Instagram</span>
+                    </a>
+                    <a href="https://bsky.app/profile/zestregards.com" rel="noopener" target="_blank">
+                        <svg id="bluesky" width="34" height="34" viewBox="120 120 800 800" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M351.121 315.106C416.241 363.994 486.281 463.123 512 516.315C537.719 463.123 607.759 363.994 672.879 315.106C719.866 279.83 796 252.536 796 339.388C796 356.734 786.055 485.101 780.222 505.943C759.947 578.396 686.067 596.876 620.347 585.691C735.222 605.242 764.444 670.002 701.333 734.762C581.473 857.754 529.061 703.903 515.631 664.481C513.169 657.254 512.017 653.873 512 656.748C511.983 653.873 510.831 657.254 508.369 664.481C494.939 703.903 442.527 857.754 322.667 734.762C259.556 670.002 288.778 605.242 403.653 585.691C337.933 596.876 264.053 578.396 243.778 505.943C237.945 485.101 228 356.734 228 339.388C228 252.536 304.134 279.83 351.121 315.106Z" />
+                            <title>Bluesky</title>
+                            <desc>Culinary Bluesky Link Icon</desc>
+                        </svg>
+                        <span class="sr-only">Bluesky Social</span>
+                    </a>
+                    <a href="https://ko-fi.com/jolanglinais" rel="noopener" target="_blank">
+                        <i class="fa-solid fa-mug-hot"></i>
+                        <span class="sr-only">Ko-Fi</span>
+                    </a>
+                    <a href="https://linktr.ee/jolanglinais" rel="noopener" target="_blank">
+                        <i class="fa-brands fa-linktree"></i>
+                        <span class="sr-only">Linktree</span>
+                    </a>
+                    <a href="mailto:zestregards@gmail.com?subject=Some witty intro here" rel="noopener" target="_blank">
+                        <i class="fa-regular fa-paper-plane"></i>
+                        <span class="sr-only">Email</span>
+                    </a>
+                    <a href="https://jolanglinais.substack.com" rel="noopener" target="_blank" margin="50px 0 0 0 !important">
+                        <svg id="substack" role="img" viewBox="-5 -5 34 34" xmlns="http://www.w3.org/2000/svg" id="Substack--Streamline-Simple-Icons" height="34" width="34">
+                            <title>Substack</title>
+                            <desc>Culinary Substack Link Icon</desc>
+                            <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z" stroke-width="1"></path>
+                        </svg>
+                        <span class="sr-only">Substack</span>
+                    </a>
+                </div>
+                <button id="lightOrDarkButton">🌙</button>
+            </div>
+    </body>
+</html>
