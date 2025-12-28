@@ -132,7 +132,7 @@ i {
 /* Social link icon wrapper */
 #socialLink {
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
+  grid-template-columns: auto auto auto auto auto auto auto;
   width: min-content;
   margin: 0.5em auto;
 }
