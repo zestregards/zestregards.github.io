@@ -12,8 +12,8 @@ p {
   font-size: 1.2rem;
   font-family: 'Cairo', sans-serif;
   font-display: swap;
-  max-width: 700px;
-  margin: 10px auto;
+  max-width: 43.75rem;
+  margin: 0.5em auto;
 }
 
 /* link hover transition activity */
@@ -55,12 +55,17 @@ a:active {
 
 /* Enlarge social icons */
 i {
-  padding: 5px;
+  padding: 0.3em;
 }
 
 #page {
-  margin-top: 50px;
+  margin-top: 3.125rem;
   display: grid;
+}
+
+#main {
+  display: grid;
+  gap: 1.25rem;
 }
 
 /* Cover image */
@@ -100,7 +105,7 @@ i {
 
 /* All child social links */
 #socialLink > * {
-  margin: 8px;
+  margin: 0.5em;
 }
 
 /* Specify social icon hover color */
@@ -125,7 +130,7 @@ i {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0px;
+  border: 0;
   background-color: #293c4b;
   cursor: pointer;
   border-radius: 50%;
