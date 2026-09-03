@@ -17,6 +17,21 @@ p {
   margin: 0.5em auto;
 }
 
+/* Section divider */
+hr {
+  width: 32rem;
+  max-width: 60%;
+  height: 1px;
+  border: 0;
+  margin: 1em auto;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(207, 207, 207, 0.45),
+    transparent
+  );
+}
+
 /* link hover transition activity */
 a,
 i {
