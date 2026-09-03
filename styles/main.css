@@ -1,9 +1,56 @@
+/* ---------------------------------------------------------------
+   Theme tokens
+   Light is the bare :root. Dark is declared twice on purpose: once
+   for the OS preference (unless the button has forced light), and
+   once for an explicit button choice, so the button overrides the
+   OS in both directions.
+   --------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+  --fg: #293c4b;
+  --bg: #fff;
+  --rule: rgba(41, 60, 75, 0.45);
+  --cover-shadow: rgba(41, 60, 75, 0.25);
+  --blog-hover: #1d1d1d;
+  --toggle-bg: #293c4b;
+  --toggle-border: transparent;
+
+  /* Shared across both themes */
+  --link-hover: #576ce0;
+  --link-active: #0076d1;
+  --emphasis-hover: #ff7518;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --fg: #cfcfcf;
+    --bg: rgb(29, 29, 29);
+    --rule: rgba(207, 207, 207, 0.45);
+    --cover-shadow: rgba(0, 0, 0, 0.55);
+    --blog-hover: #fff;
+    --toggle-bg: rgb(29, 29, 29);
+    --toggle-border: #cfcfcf;
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --fg: #cfcfcf;
+  --bg: rgb(29, 29, 29);
+  --rule: rgba(207, 207, 207, 0.45);
+  --cover-shadow: rgba(0, 0, 0, 0.55);
+  --blog-hover: #fff;
+  --toggle-bg: rgb(29, 29, 29);
+  --toggle-border: #cfcfcf;
+}
+
 body {
   font-family: 'Montserrat Alternates', sans-serif;
-  font-display: swap;
   margin: 0;
   text-align: center;
-  color: #293c4b;
+  color: var(--fg);
+  background-color: var(--bg);
   transition: background 0.25s;
 }
 
@@ -11,7 +58,6 @@ body {
 p {
   font-size: 1.2rem;
   font-family: 'Cairo', sans-serif;
-  font-display: swap;
   max-width: 43.75rem;
   margin: 0.5em auto;
 }
@@ -23,49 +69,40 @@ hr {
   height: 1px;
   border: 0;
   margin: 1em auto;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(41, 60, 75, 0.45),
-    transparent
-  );
+  background: linear-gradient(to right, transparent, var(--rule), transparent);
 }
 
 /* link hover transition activity */
 a,
 i {
-  color: #293c4b;
+  color: var(--fg);
   font-weight: 400;
   text-decoration: none;
 
   /*for fade effect on hover*/
-  -o-transition: 0.5s;
-  -ms-transition: 0.5s;
-  -moz-transition: 0.5s;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  transition: 0.15s;
 }
 
 /* Specify links */
 a:link {
   font-size: 1.2rem;
-  color: #293c4b;
+  color: var(--fg);
 }
 
 /* Specify visited links */
 a:visited {
-  color: #293c4b;
+  color: var(--fg);
 }
 
 /* Specify hovered links */
 a:hover {
-  color: #576ce0;
+  color: var(--link-hover);
   transition: 0.15s;
 }
 
 /* Specify active links */
 a:active {
-  color: #0076d1;
+  color: var(--link-active);
 }
 
 /* Enlarge social icons */
@@ -88,20 +125,16 @@ i {
   height: 200px;
   vertical-align: middle;
   border-radius: 6px;
-  box-shadow: 0 4px 14px rgba(41, 60, 75, 0.25);
+  box-shadow: 0 4px 14px var(--cover-shadow);
 }
 
 .emphasis {
   /*for fade effect on hover*/
-  -o-transition:color 0.5s;
-  -ms-transition:color 0.5s;
-  -moz-transition:color 0.5s;
-  -webkit-transition:color 0.5s;
-  transition:color 0.5s;
+  transition: color 0.15s;
 }
 
 .emphasis:hover {
-  color: #FF7518;
+  color: var(--emphasis-hover);
   transition: 0.15s;
 }
 
@@ -137,7 +170,7 @@ i {
   color: #1185fe;
 }
 .fa-blog:hover {
-  color: #1d1d1d;
+  color: var(--blog-hover);
 }
 
 #lightOrDarkButton {
@@ -145,8 +178,9 @@ i {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0;
-  background-color: #293c4b;
+  box-sizing: border-box;
+  border: 1px solid var(--toggle-border);
+  background-color: var(--toggle-bg);
   cursor: pointer;
   border-radius: 50%;
   width: 24px;
@@ -155,8 +189,8 @@ i {
 
 #lightOrDarkButton:focus {
   outline: none;
-  border-color: #576ce0;
-  box-shadow: 0 0 10px #576ce0;
+  border-color: var(--link-hover);
+  box-shadow: 0 0 10px var(--link-hover);
 }
 
 .sr-only {
