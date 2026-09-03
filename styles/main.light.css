@@ -59,14 +59,16 @@ i {
 }
 
 #page {
-  margin-top: 200px;
+  margin-top: 50px;
   display: grid;
 }
 
-/* Headshot image */
-#headshot {
+/* Cover image */
+#cover {
   height: 200px;
   vertical-align: middle;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(41, 60, 75, 0.25);
 }
 
 .emphasis {
