@@ -1,48 +1,33 @@
-/* ---------------------------------------------------------------
-   Theme tokens
-   Light is the bare :root. Dark is declared twice on purpose: once
-   for the OS preference (unless the button has forced light), and
-   once for an explicit button choice, so the button overrides the
-   OS in both directions.
-   --------------------------------------------------------------- */
+/* Theme tokens. The OS preference picks a side; every rule below reads them. */
 :root {
-  color-scheme: light;
-  --fg: #293c4b;
-  --bg: #fff;
-  --rule: rgba(41, 60, 75, 0.45);
-  --cover-shadow: rgba(41, 60, 75, 0.25);
-  --blog-hover: #1d1d1d;
-  --toggle-bg: #293c4b;
-  --toggle-border: transparent;
+  color-scheme: light dark;
 
-  /* Shared across both themes */
-  --link-hover: #576ce0;
-  --link-active: #0076d1;
+  /* Palette */
+  --ink: #293c4b;
+  --paper: #ffffff;
+  --ash: #cfcfcf;
+  --charcoal: rgb(29, 29, 29);
+
+  /* Roles. Light value first, dark second. */
+  --fg: light-dark(var(--ink), var(--ash));
+  --bg: light-dark(var(--paper), var(--charcoal));
+  --btn-bg: light-dark(var(--ink), var(--charcoal));
+  --btn-border: light-dark(transparent, var(--ash));
+  --rule: light-dark(rgba(41, 60, 75, 0.45), rgba(207, 207, 207, 0.45));
+  --cover-shadow: light-dark(rgba(41, 60, 75, 0.25), rgba(0, 0, 0, 0.55));
+  --blog-hover: light-dark(var(--charcoal), var(--paper));
+  --accent-hover: #576ce0;
+  --accent-active: #0076d1;
   --emphasis-hover: #ff7518;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    color-scheme: dark;
-    --fg: #cfcfcf;
-    --bg: rgb(29, 29, 29);
-    --rule: rgba(207, 207, 207, 0.45);
-    --cover-shadow: rgba(0, 0, 0, 0.55);
-    --blog-hover: #fff;
-    --toggle-bg: rgb(29, 29, 29);
-    --toggle-border: #cfcfcf;
-  }
+/* The button's override, in both directions. Cleared on reload. */
+:root[data-theme='light'] {
+  color-scheme: light;
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --fg: #cfcfcf;
-  --bg: rgb(29, 29, 29);
-  --rule: rgba(207, 207, 207, 0.45);
-  --cover-shadow: rgba(0, 0, 0, 0.55);
-  --blog-hover: #fff;
-  --toggle-bg: rgb(29, 29, 29);
-  --toggle-border: #cfcfcf;
 }
 
 body {
@@ -51,7 +36,7 @@ body {
   text-align: center;
   color: var(--fg);
   background-color: var(--bg);
-  transition: background 0.25s;
+  transition: background-color 0.25s, color 0.25s;
 }
 
 /* General text */
@@ -96,13 +81,22 @@ a:visited {
 
 /* Specify hovered links */
 a:hover {
-  color: var(--link-hover);
+  color: var(--accent-hover);
   transition: 0.15s;
 }
 
 /* Specify active links */
 a:active {
-  color: var(--link-active);
+  color: var(--accent-active);
+}
+
+/* Keyboard focus. Same ring as the toggle button so both read as one system.
+   Must stay after a:link/a:visited, which match at equal specificity. */
+a:focus-visible {
+  outline: 2px solid var(--accent-hover);
+  outline-offset: 2px;
+  border-radius: 2px;
+  color: var(--accent-hover);
 }
 
 /* Enlarge social icons */
@@ -179,18 +173,19 @@ i {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  border: 1px solid var(--toggle-border);
-  background-color: var(--toggle-bg);
+  border: 1px solid var(--btn-border);
+  background-color: var(--btn-bg);
   cursor: pointer;
   border-radius: 50%;
   width: 24px;
   height: 24px;
 }
 
-#lightOrDarkButton:focus {
-  outline: none;
-  border-color: var(--link-hover);
-  box-shadow: 0 0 10px var(--link-hover);
+/* Keyboard focus only. A real outline survives forced-colors mode; the glow doesn't. */
+#lightOrDarkButton:focus-visible {
+  outline: 2px solid var(--accent-hover);
+  outline-offset: 2px;
+  box-shadow: 0 0 10px var(--accent-hover);
 }
 
 .sr-only {

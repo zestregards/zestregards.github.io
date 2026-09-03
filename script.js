@@ -1,31 +1,36 @@
-const root = document.documentElement;
 const button = document.getElementById("lightOrDarkButton");
-const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-
-const glyphFor = (theme) => (theme === "dark" ? "☀️" : "🌙");
+const osPrefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 const themeColor = { light: "#ffffff", dark: "#1d1d1d" };
 
-// No data-theme yet means the OS preference is still in charge.
-const currentTheme = () =>
-    root.dataset.theme || (prefersDark.matches ? "dark" : "light");
-
-const switchLightOrDark = () => {
-    const theme = currentTheme() === "dark" ? "light" : "dark";
-    root.dataset.theme = theme;
-    button.textContent = glyphFor(theme);
-
-    // The meta tags key off the OS, not our override, so pin both to the
-    // chosen theme once the button has had a say.
-    document
-        .querySelectorAll('meta[name="theme-color"]')
-        .forEach((meta) => (meta.content = themeColor[theme]));
+/* data-theme is the override; absent it, the OS decides. */
+const isDark = () => {
+    const override = document.documentElement.dataset.theme;
+    return override ? override === "dark" : osPrefersDark.matches;
 };
 
-button.addEventListener("click", switchLightOrDark);
+/* Colors follow the tokens on their own; the rest of this doesn't. */
+const render = () => {
+    const dark = isDark();
+    button.textContent = dark ? "☀️" : "🌙";
+    button.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
 
-// Start the button in sync with whatever the OS is showing, and keep it
-// there if the OS flips before an explicit choice is made.
-button.textContent = glyphFor(currentTheme());
-prefersDark.addEventListener("change", () => {
-    if (!root.dataset.theme) button.textContent = glyphFor(currentTheme());
+    /* The metas key off the OS, so they only need pinning once the button
+       has had a say. Pinning unconditionally would freeze them here, on the
+       first render, and the OS could never move them again. */
+    if (document.documentElement.dataset.theme) {
+        document
+            .querySelectorAll('meta[name="theme-color"]')
+            .forEach((meta) => (meta.content = themeColor[dark ? "dark" : "light"]));
+    }
+};
+
+button.addEventListener("click", () => {
+    document.documentElement.dataset.theme = isDark() ? "light" : "dark";
+    render();
 });
+
+/* Fires either way, but a no-op once an override is set: isDark() stops
+   consulting the media query at that point. */
+osPrefersDark.addEventListener("change", render);
+
+render();
